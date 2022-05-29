@@ -6,26 +6,31 @@ const sex = document.querySelector('#sex');
 const name = document.querySelector('#name');
 const generateUser = document.querySelector('button');
 
-
+alert('Click on the generate new user to get started');
 
 getUser = async () => {
     data = await fetch('https://randomuser.me/api/');
     response = await data.json();
 
-    return response.results[0];
+    // To get country info(flag)
+    data2 = await fetch(`https://restcountries.com/v3.1/name/${response.results[0].location.country}`);
+    response2 = await data2.json();
+
+    return [response.results[0], response2[0]]
 }
 
 updateUI = (data) => {
-    phone.innerHTML += `<span>${data.phone}</span>`
-    email.innerHTML += `<span>${data.email}</span>` 
-    country.innerHTML += `<p>${data.location.country}</p>`
-    sex.innerHTML += `<p>${data.gender}</p>`
-    name.innerHTML += `<p>
-                        <span>${data.name.title}</span>
-                        <span>${data.name.first}</span>
-                        <span>${data.name.last}</span>
+    name.innerHTML = `<p>
+                        <span>${data[0].name.title}</span>
+                        <span>${data[0].name.first}</span>
+                        <span>${data[0].name.last}</span>
                         </p>`
-    image.setAttribute('src', data.picture.medium)
+    sex.innerHTML = `<span>${data[0].gender.toUpperCase()}</span>`
+    phone.innerHTML = `<span class="material-icons">call</span> <span>${data[0].phone}</span>`
+    email.innerHTML = `<span class="material-icons">email</span> <span>${data[0].email}</span>` 
+    country.innerHTML = `<span class="material-icons">location_on</span> <span>${data[0].location.country} <img src = "${data[1].flags.png}" width = "20px" height = "15px" alt = ""></span>`
+    image.setAttribute('src', data[0].picture.medium)
+    image.setAttribute('title', data[0].name.first)
 }
 
 

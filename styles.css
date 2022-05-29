@@ -13,28 +13,63 @@ body {
 
 .container {
     width: 400px;
-    max-width: 80%;
+    max-width: 90%;
     margin: 10rem auto;
+    display: grid;
+    place-items: center;
+    box-shadow: 2px 5px 8px rgba(0,0,255,0.4);
+}
+
+main {
+    width: 100%;
+}
+
+.profile-top {
+    border-bottom: .1rem solid #000;
+    background: linear-gradient(to bottom right, blue, red);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.profile-top img {
+    border: .15rem solid #f1f1f1;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+}
+
+.profile-bottom div {
+    background: #eee;
+    box-shadow: 2px 5px 8px rgba(0,0,0,0.4);
+    padding: .5rem;
+    margin: 1rem .5rem;
+    border-radius: .4rem;
+    transition: 0.2s transform ease-in-out;
+}
+
+.profile-bottom div:hover {
+    transform: scale(1.04);
+}
+
+.profile-bottom div{
     display: grid;
     place-items: center;
 }
 
-main {
-    border: 1px solid black;
-    padding: 2rem 4rem;
+button {
+    outline: none;
+    border: none;
+    border-radius: .2rem;
+    padding: .6rem;
+    margin: .3rem;
+    color: #fff;
+    background: rgb(75, 75, 209);
+    transition: 0.2s transform ease-in;
+    cursor: pointer;
 }
 
-.profile-top {
-    border: 5px solid #fff;
-}
-
-.profile-top img {
-    border: 5px solid red;
-    border-radius: 50%;
-}
-
-.profile-bottom div {
-    border: 1px solid red;
-    padding: 5px;
-    margin: 10px 0;
+button:hover {
+    transform: scale(0.9);
 }

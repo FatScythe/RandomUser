@@ -6,7 +6,7 @@ const sex = document.querySelector('#sex');
 const name = document.querySelector('#name');
 const generateUser = document.querySelector('button');
 
-alert('Click on the generate new user to get started');
+// alert('Click on the generate new user to get started');
 
 getUser = async () => {
     data = await fetch('https://randomuser.me/api/');
@@ -20,17 +20,34 @@ getUser = async () => {
 }
 
 updateUI = (data) => {
+
+    // localStorage
+    localStorage.setItem('title', data[0].name.title);
+    localStorage.setItem('firstname', data[0].name.first);
+    localStorage.setItem('lastname', data[0].name.last);
+    localStorage.setItem('avatar', data[0].picture.medium);
+    localStorage.setItem('gender', data[0].gender.toUpperCase());
+    localStorage.setItem('phone', data[0].phone);
+    localStorage.setItem('email', data[0].email);
+    localStorage.setItem('country', data[0].location.country);
+    localStorage.setItem('flag', data[1].flags.png);
+
+
+
+
+
     name.innerHTML = `<p>
-                        <span>${data[0].name.title}</span>
-                        <span>${data[0].name.first}</span>
-                        <span>${data[0].name.last}</span>
+                        <span>${localStorage.getItem('title')}</span>
+                        <span>${localStorage.getItem('firstname')}</span>
+                        <span>${localStorage.getItem('lastname')}</span>
                         </p>`
-    sex.innerHTML = `<span>${data[0].gender.toUpperCase()}</span>`
-    phone.innerHTML = `<span class="material-icons">call</span> <span>${data[0].phone}</span>`
-    email.innerHTML = `<span class="material-icons">email</span> <span>${data[0].email}</span>` 
-    country.innerHTML = `<span class="material-icons">location_on</span> <span>${data[0].location.country} <img src = "${data[1].flags.png}" width = "20px" height = "15px" alt = ""></span>`
-    image.setAttribute('src', data[0].picture.medium)
+    sex.innerHTML = `<span>${localStorage.getItem('gender')}</span>`
+    phone.innerHTML = `<span class="material-icons">call</span> <span>${localStorage.getItem('phone')}</span>`
+    email.innerHTML = `<span class="material-icons">email</span> <span>${localStorage.getItem('email')}</span>` 
+    country.innerHTML = `<span class="material-icons">location_on</span> <span>${localStorage.getItem('country')} <img src = "${localStorage.getItem('flag')}" width = "20px" height = "15px" alt = ""></span>`
+    image.setAttribute('src', localStorage.getItem('avatar'))
     image.setAttribute('title', data[0].name.first)
+
 }
 
 
@@ -39,3 +56,18 @@ generateUser.addEventListener('click', () => {
     .then(data => updateUI(data))
     .catch(err => console.log(err));
 });
+
+
+// Showing data on localStorage
+
+    name.innerHTML = `<p>
+                        <span>${localStorage.getItem('title')}</span>
+                        <span>${localStorage.getItem('firstname')}</span>
+                        <span>${localStorage.getItem('lastname')}</span>
+                    </p>`
+    sex.innerHTML = `<span>${localStorage.getItem('gender')}</span>`
+    phone.innerHTML = `<span class="material-icons">call</span> <span>${localStorage.getItem('phone')}</span>`
+    email.innerHTML = `<span class="material-icons">email</span> <span>${localStorage.getItem('email')}</span>` 
+    country.innerHTML = `<span class="material-icons">location_on</span> <span>${localStorage.getItem('country')} <img src = "${localStorage.getItem('flag')}" width = "20px" height = "15px" alt = ""></span>`
+    image.setAttribute('src', localStorage.getItem('avatar'))
+    image.setAttribute('title', localStorage.getItem('title'))

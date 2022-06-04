@@ -28,6 +28,16 @@ getUser = async () => {
     return [response.results[0], response2[0]]
 }
 ```
+
+```JavaScript
+    // Using localStorage
+    localStorage.setItem('title', data[0].name.title);
+    localStorage.setItem('firstname', data[0].name.first);
+    localStorage.setItem('lastname', data[0].name.last);
+    localStorage.setItem('avatar', data[0].picture.medium);
+    localStorage.setItem('gender', data[0].gender.toUpperCase());
+
+```
 ---
 
 > ### Desktop View

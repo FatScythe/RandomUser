@@ -58,16 +58,20 @@ generateUser.addEventListener('click', () => {
 });
 
 
-// Showing data on localStorage
+// Showing data from localStorage
 
-    name.innerHTML = `<p>
+if(localStorage.length) {
+    name.innerHTML =`<p>
                         <span>${localStorage.getItem('title')}</span>
                         <span>${localStorage.getItem('firstname')}</span>
                         <span>${localStorage.getItem('lastname')}</span>
-                    </p>`
-    sex.innerHTML = `<span>${localStorage.getItem('gender')}</span>`
-    phone.innerHTML = `<span class="material-icons">call</span> <span>${localStorage.getItem('phone')}</span>`
-    email.innerHTML = `<span class="material-icons">email</span> <span>${localStorage.getItem('email')}</span>` 
-    country.innerHTML = `<span class="material-icons">location_on</span> <span>${localStorage.getItem('country')} <img src = "${localStorage.getItem('flag')}" width = "20px" height = "15px" alt = ""></span>`
-    image.setAttribute('src', localStorage.getItem('avatar'))
-    image.setAttribute('title', localStorage.getItem('title'))
+                    </p>`;
+    sex.innerHTML = `<span>${localStorage.getItem('gender')}</span>`;
+    phone.innerHTML = `<span class="material-icons">call</span> <span>${localStorage.getItem('phone')}</span>`;
+    email.innerHTML = `<span class="material-icons">email</span> <span>${localStorage.getItem('email')}</span>` ;
+    country.innerHTML = `<span class="material-icons">location_on</span> <span>${localStorage.getItem('country')} <img src = "${localStorage.getItem('flag')}" width = "20px" height = "15px" alt = ""></span>`;
+    image.setAttribute('src', localStorage.getItem('avatar'));
+    image.setAttribute('title', localStorage.getItem('title'));
+}
+
+    
